@@ -8,11 +8,11 @@ writeStream.write(`Title \n`);
 request('https://tproger.ru/digest/films/', (error, response, html)=>{
     if(!error && response.statusCode == 200) {
         const $ = cheerio.load(html);
-        $('.entry-content').each((i, el) =>{
-            const title = $(el).find('h3').text();
-            const text = $(el).find('p').attr();
+        $('.nav-collapse.collapse').each((i, el) =>{
+            const title = $(el).find('a').text();
+            //const text = $(el).find('p').attr();
 
-            console.log(title,text);
+            console.log(title + '\n');
             writeStream.write(`${title} \n`);
             console.log('Scraping Done...');
 
